@@ -1,0 +1,11 @@
+Name,path,Scope,Category,Description
+TEST_Group1,"OU=LAN Group,DC=UAMtest,DC=COM",Global,Security,_TEST Group
+TEST_Group2,"OU=LAN Group,DC=UAMtest,DC=COM",Global,Security,_TEST Group
+TEST_Group3,"OU=LAN Group,DC=UAMtest,DC=COM",Global,Security,_TEST Group
+TEST_Group4,"OU=LAN Group,DC=UAMtest,DC=COM",Global,Security,_TEST Group
+TEST_Group5,"OU=LAN Group,DC=UAMtest,DC=COM",Global,Security,_TEST Group
+TEST_Group6,"OU=Sub cat 1,OU=LAN Group,DC=UAMtest,DC=COM",Global,Security,_TEST Group
+TEST_Group7,"OU=Sub cat 1,OU=LAN Group,DC=UAMtest,DC=COM",Global,Security,_TEST Group
+TEST_Group8,"OU=Sub cat 1,OU=LAN Group,DC=UAMtest,DC=COM",Global,Security,_TEST Group
+TEST_Group9,"OU=Sub cat 1,OU=LAN Group,DC=UAMtest,DC=COM",Global,Security,_TEST Group
+TEST_Group10,"OU=Sub cat 1,OU=LAN Group,DC=UAMtest,DC=COM",Global,Security,_TEST Group

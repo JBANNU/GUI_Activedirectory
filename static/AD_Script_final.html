@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WAMC</title>
+<style>
+    :root {
+        --primary:  #f7f6f8;
+        --success: 	#22c55e;
+        --warning:	#eab308;
+        --danger: 	#ef4444;
+        --gray: 	#6b7280;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+        background: #5d0590;
+        padding: 2rem;
+        min-height: 100vh;
+        text-align: center;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    h1 {
+        color: White;
+        font-size: 2em;
+        margin-bottom: 0.5em;
+        text-align: center;
+    }
+
+    p.powered-by {
+        color: White;
+        font-size: 1em;
+        text-align: center;
+        margin-bottom: 1em;
+    }
+
+    button {
+        background-color: var(--primary);
+        border: none;
+        color: #7809b9;
+        padding: 0.75em 1.5em;
+        text-align: left; /* Align text to the left within the button */
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* Align content to the left */
+        margin: 0.5em auto;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 0.5em;
+        transition: background-color 0.3s ease;
+        width: 250px;
+        height: 50px;
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+		position: relative; /* For positioning loader */
+    }
+
+    button:hover {
+        background-color: #3e8e41;
+    }
+
+    button svg {
+        margin-right: 0.5em; /* Spacing between icon and text */
+        fill: #7809b9;
+    }
+
+    .status-message {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .failure {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+	.logout-button {
+        background-color: #f44336; /* Red color for logout */
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+/* Loader Styles */
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 8px solid #f3f3f3; /* Increased border width */
+  border-top: 8px solid black; /* Black color */
+  border-radius: 50%;
+  width: 60px; /* Increased width */
+  height: 60px; /* Increased height */
+  animation: spin 1s linear infinite;
+  display: none; /* Hidden by default */
+}
+
+/* Active loader to display it*/
+.loader.active {
+  display: block;
+}
+ .username-display {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: white;
+        font-size: 1.2em;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>AccessPro Master</h1>
+    <p class="powered-by">Powered by DXC DI UAM Security India</p>
+
+    <button onclick="createUser(this)" id = 'usercreate'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            <path d="M12.5 7a.5.5 0 0 1 .5.5V9h1.5a.5.5 0 0 1 0 1H13v1.5a.5.5 0 0 1-1 0V10h-1.5a.5.5 0 0 1 0-1H12V7.5a.5.5 0 0 1 .5-.5z"/>
+        </svg>
+        Create User
+         <div class="loader"></div>
+    </button>
+    <button onclick="resetPassword(this)" id = 'resetpassword'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
+            <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5 3.48 3.48 0 0 1-.225.225l-.225.225a.5.5 0 0 0 .708.708l.225-.225.225-.225a3.5 3.5 0 0 1 5 0 .5.5 0 0 0 .708-.708a4.5 4.5 0 0 0-6.082-6.082A4.5 4.5 0 0 0 3.5 11.5z"/>
+        </svg>
+        Reset Password
+         <div class="loader"></div>
+    </button>
+    <button onclick="disableUser(this)" id = 'disableuser'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8 7.293 5.354 4.646z"/>
+        </svg>
+        Disable User
+         <div class="loader"></div>
+    </button>
+    <button onclick="addUserToGroup(this)" id = 'addusergroup'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+        </svg>
+        Add User to Group
+         <div class="loader"></div>
+    </button>
+    
+    <button onclick="removeUserFromGroup(this)" id = 'removeusergroup'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash-fill" viewBox="0 0 16 16">
+            <path d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        </svg>
+        Remove User from Group
+         <div class="loader"></div>
+    </button>
+    <button onclick="deleteUser(this)" id = 'deleteuser'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash-fill" viewBox="0 0 16 16">
+            <path d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        </svg>
+        delete User
+         <div class="loader"></div>
+    </button>
+    <button onclick="groupCreation(this)" id = 'groupcreation'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash-fill" viewBox="0 0 16 16">
+            <path d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        </svg>
+        groupCreation
+         <div class="loader"></div>
+    </button>
+
+    <div id="status" class="status-message" style="display: none;"></div>
+    <a href="/logout" class = "logout-button">Logout</a>
+</div>
+
+<script>
+
+async function executePowerShellScript(scriptName) {
+    try {
+        const response = await fetch('http://localhost:5000/api/powershell', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ scriptName: scriptName })
+        });
+    
+        if (!response.ok) {
+            const errorData = await response.json(); // Always try to parse JSON
+    
+            if (errorData && errorData.error) {
+                throw new Error(`Backend error: ${response.status} - ${errorData.error}`);
+            } else {
+                throw new Error(`Backend error: ${response.status} - Unknown error`);
+            }
+        }
+    
+        const data = await response.json();
+    
+        if (data.exit_code !== 0) {
+            throw new Error(`PowerShell script failed: ${data.error || data.output || "Unknown error"}`);
+        }
+    
+        return data.output || "Script executed successfully";
+    
+    } catch (error) {
+        console.error("Error in executePowerShellScript:", error);
+        throw error; // Re-throw the error
+    }
+}
+    
+async function executeTask(button, taskDescription, operationFunction) {
+  const loader = button.querySelector('.loader');
+      loader.classList.add('active');
+
+      try {
+            const result = await operationFunction();
+            alert(`${taskDescription} completed.\nResult: ${result}`);
+        } catch (error) {
+            console.error("Error:", error);
+            alert(`${taskDescription} failed.\nError: ${error}`);
+        } finally {
+             loader.classList.remove('active');
+        }
+    }
+
+    function createUser(button) {
+        executeTask(button, "Creating User", () => executePowerShellScript("createUser"));
+    }
+
+    function resetPassword(button) {
+        executeTask(button,"Resetting Password", () => executePowerShellScript("resetPassword"));
+    }
+
+    function disableUser(button) {
+        executeTask(button,"Disabling User", () => executePowerShellScript("disableUser"));
+    }
+
+    function addUserToGroup(button) {
+        executeTask(button,"Adding User to Group", () => executePowerShellScript("addUserToGroup"));
+    }
+
+    function removeUserFromGroup(button) {
+        executeTask(button,"Removing User from Group", () => executePowerShellScript("removeUserFromGroup"));
+    }
+    function groupCreation(button) {
+        executeTask(button,"group creation excecuted", () => executePowerShellScript("groupCreation"));
+    }
+    function deleteUser(button) {
+        executeTask(button,"deleting user excecuted", () => executePowerShellScript("deleteUser"));
+    }
+
+</script>
+
+</body>
+</html>
