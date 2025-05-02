@@ -1,2 +1,2 @@
-﻿#Name	Domain	Description	OUPath	MailID	Groups
-adminsankbab	UAMtest	Contractors	OU=Contractors,DC=UAMtest,DC=com	bharadwaj.juloori@dxc.com	Test_Group1
+﻿"#Name	Domain	Description	OUPath	MailID	Groups",,
+"adminsankbab	UAMtest	Contractors	OU=Contractors",DC=UAMtest,"DC=com	bharadwaj.juloori@gmail.com	Test_Group1"

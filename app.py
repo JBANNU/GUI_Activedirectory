@@ -15,7 +15,7 @@ STATIC_DIR = 'static'
 SCRIPTS_DIR = 'powershell_scripts'
 
 # LDAP Configuration (Move credentials to environment variables!)
-app.config['LDAP_SERVER'] = os.environ.get('AD_SERVER', 'win-dsi08mm8fdk.uamtest.com')  # Replace with actual server
+app.config['LDAP_SERVER'] = os.environ.get('AD_SERVER', 'win-VBONQJACCIV.uamtest.com')  # Replace with actual server
 app.config['LDAP_BASE_DN'] = os.environ.get('AD_BASE_DN', 'dc=UAMtest,dc=com')  # Replace with actual Base DN
 LDAP_USER_SEARCH_FILTER = "(&(objectClass=user)(sAMAccountName={username}))"
 LDAP_BIND_USER_FORMAT = "{domain}\\{username}"
